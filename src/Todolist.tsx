@@ -70,8 +70,8 @@ export function Todolist(props: PropsType) {
                     props.deleteTask(el.id)
                 }
 
-                return(<li key={el.id}>
-                    <input type="checkbox" 
+                return(<li key={el.id} className={el.isDone ? 'task-style' : ''} >
+                    <input type="checkbox"
                            checked={el.isDone}
                            onChange={(event: ChangeEvent<HTMLInputElement>)=>{
                             let newStatus = event.currentTarget.checked
