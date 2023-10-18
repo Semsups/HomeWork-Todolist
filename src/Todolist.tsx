@@ -19,11 +19,15 @@ type PropsType = {
 export function Todolist(props: PropsType) {
 
     let [title, setTitle] = useState('')
+    let [error, setError] = useState<string | null>(null)
 
     const addTaskCallBack = () => {
         if(title.trim() !== '')
         {props.addTask(title.trim())
         setTitle('')}
+        else {
+            setError('Ты то введи что-нибудь')
+        }
     }
 
     const onChangeCallBack = (event:ChangeEvent<HTMLInputElement>)=>{
@@ -31,7 +35,8 @@ export function Todolist(props: PropsType) {
     }
 
     const keyPressCallBack = (event:KeyboardEvent<HTMLInputElement>) => {
-            if (event.key === 'Enter') {
+        setError(null)    
+        if (event.key === 'Enter') {
                 addTaskCallBack()
             }
     }
@@ -53,8 +58,10 @@ export function Todolist(props: PropsType) {
         <div>
             <input value={title} 
                    onChange={onChangeCallBack}
-                   onKeyPress={keyPressCallBack}/>
+                   onKeyPress={keyPressCallBack}
+                   className={error ? 'error' : ''}/>
             <button onClick={addTaskCallBack}>+</button>
+            {error && <div className='error-message'>{error}</div>}
         </div>
         <ul>
             {props.tasks.map((el)=>{

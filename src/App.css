@@ -6,3 +6,12 @@
 .App > div {
   margin-right: 50px;
 }
+
+
+.error {
+  border: 1px red solid
+}
+
+.error-message {
+  color: rebeccapurple
+}
