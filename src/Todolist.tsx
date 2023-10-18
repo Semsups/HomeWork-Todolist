@@ -21,8 +21,9 @@ export function Todolist(props: PropsType) {
     let [title, setTitle] = useState('')
 
     const addTaskCallBack = () => {
-        props.addTask(title)
-        setTitle('')
+        if(title.trim() !== '')
+        {props.addTask(title.trim())
+        setTitle('')}
     }
 
     const onChangeCallBack = (event:ChangeEvent<HTMLInputElement>)=>{
